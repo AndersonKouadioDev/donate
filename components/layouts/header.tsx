@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 
 export function Header() {
   return (
@@ -19,9 +19,9 @@ export function Header() {
             </Link>
           ))}
         </nav> */}
-        <Button className="bg-primary text-black hover:bg-[#FDD835]">
+       <Link href="#donate" className={buttonVariants({ variant: "default", size: "lg" })}>
           FAIRE UN DON
-        </Button>
+        </Link>
       </div>
     </header>
   )

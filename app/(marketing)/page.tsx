@@ -1,3 +1,4 @@
+import { CurrentProjects } from "@/components/home/current-project";
 import { DonationForm } from "@/components/home/donationForm-section";
 import { FeaturesSection } from "@/components/home/features-section";
 import { InteractiveGallery } from "@/components/home/gallery-section";
@@ -15,6 +16,7 @@ export default function Home() {
       <ProgressSection />
       <ImpactVisualization />
       <InteractiveGallery />
+      <CurrentProjects />
       <TestimonialsSection />
       <DonationForm />
       <HelpSection />
