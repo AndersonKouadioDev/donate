@@ -1,5 +1,5 @@
 import { Progress } from "@/components/ui/progress"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import Link from "next/link"
 
 export function ProgressSection() {
@@ -12,7 +12,7 @@ export function ProgressSection() {
           <span>0$ collectés</span>
           <span>Objectif : 11 000$</span>
         </div>
-        <Progress value={33} className="h-3" />
+        <Progress value={10} className="h-3 bg-secondary" />
         <div className="mt-4 text-center">
           <Link href="#donate" className={buttonVariants({ variant: "black", size: "lg"})}>
             FAIRE UN DON

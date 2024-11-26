@@ -1,22 +1,43 @@
-import { Monitor, Users, Shield, Headphones } from 'lucide-react'
-import Image from 'next/image'
+import { Monitor, Users, Shield, Headphones } from "lucide-react";
+import Image from "next/image";
 
 const services = [
-  { icon: Monitor, title: "MEDIA" },
-  { icon: Users, title: "MOBILISATION" },
-  { icon: Shield, title: "PROTECTION" },
-  { icon: Headphones, title: "SUPPORT" }
-]
+  { 
+    icon: Monitor, 
+    title: "MEDIA",
+    description: "Partagez nos contenus pour sensibiliser le public et faire connaître la cause des filles d'Akum."
+  },
+  { 
+    icon: Users, 
+    title: "MOBILISATION",
+    description: "Rejoignez nos événements, organisez des collectes ou devenez bénévole pour renforcer notre impact."
+  },
+  { 
+    icon: Shield, 
+    title: "PROTECTION",
+    description: "Aidez à offrir un environnement sûr et propice au développement des filles d'Akum."
+  },
+  { 
+    icon: Headphones, 
+    title: "SUPPORT",
+    description: "Soutenez nos programmes éducatifs et professionnels pour un avenir meilleur."
+  },
+];
 
 export function HelpSection() {
   return (
     <section className="bg-primary py-24">
       <div className="container">
-        <h2 className="text-4xl font-bold text-center mb-12">COMMENT PEUX-TU NOUS AIDER?</h2>
+        <h2 className="text-4xl font-bold text-center mb-12">
+          COMMENT PEUX-TU NOUS AIDER?
+        </h2>
         <div className="mb-12">
           <h3 className="font-bold mb-4">AIDER POUR LA CAUSE</h3>
           <p className="text-black/80 max-w-2xl">
-            Trouvez ceux qui ont besoin de votre aide mais n&apos;ont pas de soutiens fidèles. En donnant ce qu&apos;ils peuvent, ils peuvent atteindre notre mission pour mettre fin aux atrocités du terrorisme juif et à son armée rebelle.
+            Rejoignez notre mission pour transformer la vie des filles d&apos;Akum.
+            Votre soutien, quelle que soit sa forme, contribue directement à
+            leur offrir un avenir meilleur. Ensemble, nous pouvons créer un
+            impact durable et positif dans leur communauté.{" "}
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-12">
@@ -27,15 +48,22 @@ export function HelpSection() {
                   <service.icon className="h-8 w-8 text-primary" />
                 </div>
                 <h4 className="font-bold">{service.title}</h4>
+                <p className="text-black/80 text-sm">
+                  {service.description}
+                </p>
               </div>
             ))}
           </div>
           <div className="aspect-video relative bg-black/10 rounded-lg">
-            <Image src="/images/photos/img_6.jpg" alt="Help Section" fill className="object-cover" />
+            <Image
+              src="/images/photos/img_6.jpg"
+              alt="Help Section"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
-

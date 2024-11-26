@@ -47,26 +47,25 @@ export default function ContactContentSection() {
           <div className="w-full md:w-1/2 pr-8">
             <h2 className="text-3xl font-bold mb-4">Entrer en contact </h2>
             <p className="text-gray-600 mb-6">
-              L&apos;Agence Mirna vous accueille dans ses locaux modernes et
-              confortables, idéalement situés pour répondre à tous vos besoins
-              immobiliers.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+              quos.
             </p>
             <div className="space-y-4">
               <div className="flex items-center">
                 <Building2 className="w-5 h-5 mr-3 text-gray-400" />
                 <span>
-                  2ème étage de l&apos;immeuble Zorôgbê, Rue du 7 décembre
+                  Riviera 2, Rue 302
                   <br />
-                  Marcory Zone 4, Abidjan Côte d&apos;Ivoire
+                  Cocody, Abidjan Côte d&apos;Ivoire
                 </span>
               </div>
               <div className="flex items-center">
                 <Mail className="w-5 h-5 mr-3 text-gray-400" />
-                <span>info@agencemirna.com</span>
+                <span>info@gmail.com</span>
               </div>
               <div className="flex items-center">
                 <Phone className="w-5 h-5 mr-3 text-gray-400" />
-                <span>(+225) 01 43 483 131 / (+225) 27 21 536 231</span>
+                <span>(+225) 00 00 00 00 00 / (+225) 00 00 00 00 00</span>
               </div>
             </div>
           </div>

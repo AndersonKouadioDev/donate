@@ -1,3 +1,4 @@
+import Ripple from "../magicui/ripple";
 import Motion from "../motion";
 
 export default function HeroSection() {
@@ -5,11 +6,18 @@ export default function HeroSection() {
     <section
       id="hero"
       className="relative bg-secondary overflow-hidden isolate pt-52 pb-20 mx-auto max-w-screen-2xl"
+      style={{
+        backgroundImage: "url('/images/photos/img_9.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
+      <div className="absolute inset-0 bg-secondary opacity-50"></div>
       <div className="container relative">
         <div className="max-w-md md:max-w-screen-sm mx-auto text-center">
           <Motion variant="verticalSlideIn">
-            <h1 className="text-3xl sm:text-4xl text-white font-agate md:text-6xl font-bold">
+            <h1 className="text-3xl sm:text-4xl text-white font-edu md:text-6xl font-bold">
               Contactez-nous
             </h1>
           </Motion>

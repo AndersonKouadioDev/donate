@@ -39,7 +39,7 @@ export function TestimonialsSection() {
   }, [])
 
   return (
-    <section className="py-24 bg-gradient-to-r from-secondary to-primary">
+    <section id="testimonials" className="py-24 bg-gradient-to-r from-secondary to-primary">
       <div className="container">
         <h2 className="text-4xl font-bold text-center text-white mb-12">
           VOIX DE LA CHANGE

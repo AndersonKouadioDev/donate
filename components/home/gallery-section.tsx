@@ -27,7 +27,7 @@ export function InteractiveGallery() {
     <section className="py-24 bg-gray-100">
       <div className="container">
         <h2 className="text-4xl font-bold text-center mb-12">
-          NOS PROJETS EN ACTION
+          QUELQUES INSTANTS DE LA VIE D&apos;<span className="text-secondary">AKUM</span>
         </h2>
         <div className="relative max-w-3xl mx-auto">
           <AnimatePresence mode="wait">

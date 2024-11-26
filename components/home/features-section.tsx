@@ -5,19 +5,19 @@ const features = [
     icon: Gift,
     title: "FAITES UN DON",
     description:
-      "Vestibulum mollis convallis laceret. Sed vestibulum lacus non.",
+      "Chaque contribution, qu’elle soit petite ou grande, nous aide à offrir un refuge sûr, des formations professionnelles, et un avenir meilleur à des jeunes filles en difficulté. Ensemble, changeons des vies.",
   },
   {
     icon: GraduationCap,
     title: "DONNER UNE BOURSE",
     description:
-      "Vestibulum mollis convallis laceret. Sed vestibulum lacus non.",
+      "Avec votre aide, nous pouvons financer des formations pratiques, comme la couture ou la pâtisserie, pour permettre aux filles d’Akum de devenir autonomes et fières de leur parcours.",
   },
   {
     icon: Heart,
     title: "SAUVEZ LES ENFANTS",
     description:
-      "Vestibulum mollis convallis laceret. Sed vestibulum lacus non.",
+      "Votre soutien nous permet de créer un espace sûr où ces jeunes filles peuvent guérir, apprendre et rêver d’un avenir meilleur. Vous êtes leur espoir.",
   },
 ];
 
@@ -27,7 +27,7 @@ export function FeaturesSection() {
       {features.map((feature) => (
         <div
           key={feature.title}
-          className="bg-primary p-6 rounded-lg flex items-start space-x-4"
+          className="bg-primary p-6 rounded-lg flex flex-col lg:flex-row gap-2 items-start space-x-4"
         >
           <div className="flex justify-center items-center p-4 rounded-full bg-white">
             <feature.icon className="h-6 w-6 text-black" />

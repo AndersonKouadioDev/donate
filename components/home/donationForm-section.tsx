@@ -1,56 +1,65 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+
+const donationAmounts = [10, 20, 50, 100];
 
 export function DonationForm() {
-  const [amount, setAmount] = useState('')
-  const [customAmount, setCustomAmount] = useState('')
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-  }
+  const [amount, setAmount] = useState(20);
+  const [customAmount, setCustomAmount] = useState("");
 
   return (
-    <section id="donate" className="container py-24 min-h-screen" style={{ backgroundImage: 'url(/images/illustration.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      <h2 className="text-6xl font-edu font-bold text-center mb-12">FAIRE UN DON</h2>
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-        <div className="mb-6">
-          <Label>Sélectionner un montant</Label>
-          <RadioGroup value={amount} onValueChange={setAmount} className="grid grid-cols-3 gap-4 mt-2">
-            {['10', '25', '50', '100', '200','500'].map((value) => (
-              <div key={value}>
-                <RadioGroupItem value={value} id={`amount-${value}`} className="peer sr-only" />
-                <Label
-                  htmlFor={`amount-${value}`}
-                  className="flex items-center justify-center rounded-md border-2 border-black/70 bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary
-                  peer-data-[state=checked]:bg-primary [&:has([data-state=checked])]:bg-primary"
-                >
-                  ${value}
-                </Label>
-              </div>
+    <section
+      id="donate"
+      className="container py-24 min-h-screen"
+      style={{
+        backgroundImage: "url(/images/illustration.webp)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white mx-auto bg-opacity-10 p-8 rounded-lg backdrop-blur-md w-full max-w-lg"
+      >
+        <h2 className="text-6xl font-edu font-bold text-center mb-12">
+          FAIRE UN DON
+        </h2>
+        <div className="grid grid-cols-2 gap-4 mb-6">
+            {donationAmounts.map((amt) => (
+              <Button
+                key={amt}
+                variant={amount === amt ? "default" : "outline"}
+                onClick={() => setAmount(amt)}
+                className="w-full"
+              >
+                {amt}€
+              </Button>
             ))}
-          </RadioGroup>
-        </div>
-        <div className="mb-6">
-          <Label htmlFor="custom-amount">Montant personnalisé</Label>
-          <Input
-            id="custom-amount"
-            placeholder="Entrer un montant personnalisé"
-            value={customAmount}
-            onChange={(e) => {
-              setCustomAmount(e.target.value)
-              setAmount('')
-            }}
-            className="border-2 border-black/70"
-          />
-        </div>
-        <Button type="submit" className="w-full">Faire un don</Button>
-      </form>
+          </div>
+          <div className="mb-6">
+            <input
+              type="number"
+              placeholder="Autre montant"
+              value={customAmount}
+              onChange={(e) => {
+                setCustomAmount(e.target.value);
+                setAmount(parseInt(e.target.value) || 0);
+              }}
+              className="w-full p-2 bg-transparent border border-secondary rounded text-white placeholder-gray-400"
+            />
+          </div>
+          <Button className="w-full bg-yellow-400 text-gray-900 hover:bg-yellow-500">
+            Faire un don de {amount}€
+          </Button>
+          <p className="mt-4 text-sm text-center text-white font-bold">
+            100% de votre don va directement au projet
+          </p>
+      </motion.div>
     </section>
-  )
+  );
 }
-

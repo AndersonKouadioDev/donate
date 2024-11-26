@@ -11,7 +11,7 @@ export default async function MarketingLayout({
   return (
     <div className="min-h-screen max-w-screen-2xl">
       <Header />
-      <main className="mx-auto">{children}</main>
+      <main className="mx-auto max-w-screen-2xl">{children}</main>
       <Footer />
     </div>
   );
