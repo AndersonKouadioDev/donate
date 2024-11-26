@@ -16,7 +16,7 @@ interface EmailProps {
   email: string;
 }
 
-export default function BookingAskingEmail({
+export default function NotificationEmail({
   name,
   email,
 }: EmailProps) {

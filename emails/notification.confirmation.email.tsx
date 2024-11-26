@@ -11,21 +11,13 @@ import {
 import * as React from "react";
 
 interface EmailProps {
-  firstName: string;
-  lastName: string;
-  propertyName: string;
-  checkIn: string;
-  checkOut: string;
-  guests: number;
+  name: string;
+  email: string;
 }
 
-export default function BookingRequestConfirmationEmail({
-  firstName,
-  lastName,
-  propertyName,
-  checkIn,
-  checkOut,
-  guests,
+export default function NotificationConfirmationEmail({
+  name,
+  email,
 }: EmailProps) {
   return (
     <Html>
@@ -41,28 +33,13 @@ export default function BookingRequestConfirmationEmail({
               Confirmation de votre demande de réservation
             </Heading>
             <Text>
-              Cher(e) {firstName} {lastName},
+              Cher(e) {name},
             </Text>
             <Text>
               Nous avons bien reçu votre demande de réservation pour la
               propriété suivante :
             </Text>
-            <Text style={propertyNameStyle}>{propertyName}</Text>
-            <Text>Détails de votre réservation :</Text>
-            <Text>
-              <strong>Date d&apos;arrivée :</strong> {checkIn}
-            </Text>
-            <Text>
-              <strong>Date de départ :</strong> {checkOut}
-            </Text>
-            <Text>
-              <strong>Nombre de personnes :</strong> {guests}
-            </Text>
-            <Text>
-              Notre équipe examinera votre demande dans les plus brefs délais et
-              vous contactera pour confirmer la disponibilité et finaliser votre
-              réservation.
-            </Text>
+           
             <Text>
               Si vous avez des questions ou besoin d&apos;informations
               supplémentaires, n&apos;hésitez pas à nous contacter.

@@ -1,52 +1,30 @@
 "use server";
 
-import BookingRequestEmail from "@/emails/booking_asking.email";
-import BookingRequestConfirmationEmail from "@/emails/booking_asking_confirmation.email";
+import NotificationEmail from "@/emails/booking_asking.email";
+import NotificationConfirmationEmail from "@/emails/notification.confirmation.email";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function BookingRequest({
-  firstName,
-  lastName,
+export async function NotificationAction({
+  name,
   email,
-  phone,
-  propertyName,
-  checkIn,
-  checkOut,
-  guests,
-  message,
-  propertyImage,
+  amount
 }: {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
-  phone: string;
-  propertyName: string;
-  checkIn: string;
-  checkOut: string;
-  guests: number;
-  message: string;
-  propertyImage: string;
+  amount: number;
 }) {
   try {
     // Envoi de l'e-mail de demande de réservation à l'agence
     const { data: requestData, error: requestError } = await resend.emails.send(
       {
-        from: "website@agencemirna.com",
-        to: ["info@agencemirna.com"],
+        from: "website@.com",
+        to: ["info@.com"],
         subject: "Nouvelle demande de réservation - Agence Mirna",
-        react: BookingRequestEmail({
-          firstName,
-          lastName,
+        react: NotificationEmail({
+          name,
           email,
-          phone,
-          propertyName,
-          checkIn,
-          checkOut,
-          guests,
-          message,
-          propertyImage,
         }),
       }
     );
@@ -58,16 +36,12 @@ export async function BookingRequest({
     // Envoi de l'e-mail de confirmation au client
     const { data: confirmationData, error: confirmationError } =
       await resend.emails.send({
-        from: "info@agencemirna.com",
+        from: "info@mdm.com",
         to: [email],
         subject: "Confirmation de votre demande de réservation - Agence Mirna",
-        react: BookingRequestConfirmationEmail({
-          firstName,
-          lastName,
-          propertyName,
-          checkIn,
-          checkOut,
-          guests,
+        react: NotificationConfirmationEmail({
+          name,
+          email,
         }),
       });
 

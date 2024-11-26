@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export function Header() {
   const pathname = usePathname();
