@@ -6,7 +6,7 @@ export default function VisionSection() {
       <div className="flex flex-col md:flex-row items-center justify-between container">
       <div className="md:w-1/2">
           <Image 
-            src="/images/photos/img_4.jpg" 
+            src="/images/community/img_4.jpeg" 
             alt="Centre d'apprentissage" 
             width={500} 
             height={300} 

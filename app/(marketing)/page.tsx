@@ -16,11 +16,11 @@ export default function Home() {
     <>
       <HeroSection />
       <FeaturesSection />
-      <ProgressSection />
+      <StorySection />
+      {/* <ProgressSection /> */}
       <WhySection />
       <VisionSection />
       <ImpactVisualization />
-      <StorySection />
       <InteractiveGallery />
       {/* <CurrentProjects /> */}
       <HowToContribute />

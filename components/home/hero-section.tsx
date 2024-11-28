@@ -7,9 +7,9 @@ export function HeroSection() {
     <section id="hero" className="relative h-[600px]">
       <div className="absolute inset-0">
         <Image
-          src="/images/photos/img_1.jpg"
+          src="/images/community/img_3.jpeg"
           alt="Children smiling"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-top"
           fill
         />
         <div className="absolute inset-0 bg-black/40" />

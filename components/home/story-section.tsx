@@ -22,7 +22,7 @@ export default function StorySection() {
                 className="relative h-80 w-full rounded-lg overflow-hidden shadow-2xl"
               >
                 <Image
-                  src="/images/photos/img_1.jpg"
+                  src="/images/community/img_7.jpeg"
                   alt="Village d'Akum"
                   layout="fill"
                   objectFit="cover"

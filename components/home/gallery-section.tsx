@@ -6,10 +6,23 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 
 const projects = [
-  { id: 1, title: 'Initiative pour une eau propre', image: '/images/photos/img_2.jpg' },
-  { id: 2, title: 'Education pour tous', image: '/images/photos/img_3.jpg' },
-  { id: 3, title: 'Programme de lutte contre la faim', image: '/images/photos/img_4.jpg' },
-  { id: 4, title: 'Conservation de l\'environnement', image: '/images/photos/img_5.jpg' },
+  { id: 1, title: '', image: '/images/community/img_1.jpeg' },
+  { id: 2, title: '', image: '/images/community/img_2.jpeg' },
+  { id: 3, title: '', image: '/images/community/img_3.jpeg' },
+  { id: 4, title: '', image: '/images/community/img_4.jpeg' },
+  { id: 5, title: '', image: '/images/community/img_5.jpeg' },
+  { id: 6, title: '', image: '/images/community/img_6.jpeg' },
+  { id: 7, title: '', image: '/images/community/img_7.jpeg' },
+  { id: 8, title: '', image: '/images/community/img_8.jpeg' },
+  { id: 9, title: '', image: '/images/community/img_9.jpeg' },
+  { id: 10, title: '', image: '/images/community/img_10.jpeg' },
+  { id: 11, title: '', image: '/images/community/img_11.jpeg' },
+  { id: 12, title: '', image: '/images/community/img_12.jpeg' },
+  // { id: 13, title: '', image: '/images/community/img_13.jpeg' },
+  { id: 14, title: '', image: '/images/community/img_14.jpeg' },
+  { id: 15, title: '', image: '/images/community/img_15.jpeg' },
+  { id: 16, title: '', image: '/images/community/img_16.jpeg' },
+  { id: 17, title: '', image: '/images/community/img_17.jpeg' },
 ]
 
 export function InteractiveGallery() {
@@ -27,10 +40,10 @@ export function InteractiveGallery() {
     <section className="py-24 bg-gray-100">
       <div className="container">
         <h2 className="text-4xl font-bold text-center mb-12">
-          QUELQUES INSTANTS DE LA VIE D&apos;<span className="text-secondary">AKUM</span>
+          QUELQUES IMAGES
         </h2>
         <div className="relative max-w-3xl mx-auto">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="popLayout">
             <motion.div
               key={currentIndex}
               initial={{ opacity: 0, x: 100 }}

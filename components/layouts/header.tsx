@@ -14,9 +14,9 @@ export function Header() {
         <nav className="hidden md:flex items-center space-x-6">
           {[
             { label: "Accueil", href: "/" },
+            { label: "Mon histoire avec Akum", href: "/#my-story-with-akum" },
             { label: "Pourquoi Akum", href: "/#why-akum" },
             { label: "Votre impact", href: "/#your-impact" },
-            { label: "Mon histoire avec Akum", href: "/#my-story-with-akum" },
             { label: "Témoignages", href: "/#testimonials" },
             { label: "Contact", href: "/contact_us" },
             { label: "Faire un don", href: "/#donate" },

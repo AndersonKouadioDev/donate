@@ -23,7 +23,7 @@ export default function WhySection() {
         </div>
         <div className="md:w-2/5">
           <Image 
-            src="/images/photos/img_3.jpg" 
+            src="/images/community/img_8.jpeg" 
             alt="Jeunes filles d'Akum" 
             width={500} 
             height={300} 
