@@ -61,7 +61,7 @@ export function HelpSection() {
             <HeroVideoDialog
               className="block"
               animationStyle="from-center"
-              videoSrc={"/videos/video_4_.mp4"}
+              videoSrc={"/images/videos/video_4_.mp4"}
               thumbnailSrc="/images/community/img_6.jpeg"
               thumbnailAlt="Video"
             />
