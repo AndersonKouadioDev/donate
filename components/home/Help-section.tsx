@@ -1,26 +1,31 @@
 import { Monitor, Users, Shield, Headphones } from "lucide-react";
 import Image from "next/image";
+import HeroVideoDialog from "../ui/hero-video-dialog";
 
 const services = [
-  { 
-    icon: Monitor, 
+  {
+    icon: Monitor,
     title: "MEDIA",
-    description: "Partagez nos contenus pour sensibiliser le public et faire connaître la cause des filles d'Akum."
+    description:
+      "Partagez nos contenus pour sensibiliser le public et faire connaître la cause des filles d'Akum.",
   },
-  { 
-    icon: Users, 
+  {
+    icon: Users,
     title: "MOBILISATION",
-    description: "Rejoignez nos événements, organisez des collectes ou devenez bénévole pour renforcer notre impact."
+    description:
+      "Rejoignez nos événements, organisez des collectes ou devenez bénévole pour renforcer notre impact.",
   },
-  { 
-    icon: Shield, 
+  {
+    icon: Shield,
     title: "PROTECTION",
-    description: "Aidez à offrir un environnement sûr et propice au développement des filles d'Akum."
+    description:
+      "Aidez à offrir un environnement sûr et propice au développement des filles d'Akum.",
   },
-  { 
-    icon: Headphones, 
+  {
+    icon: Headphones,
     title: "SUPPORT",
-    description: "Soutenez nos programmes éducatifs et professionnels pour un avenir meilleur."
+    description:
+      "Soutenez nos programmes éducatifs et professionnels pour un avenir meilleur.",
   },
 ];
 
@@ -34,13 +39,13 @@ export function HelpSection() {
         <div className="mb-12">
           <h3 className="font-bold mb-4">AIDER POUR LA CAUSE</h3>
           <p className="text-black/80 max-w-2xl">
-            Rejoignez notre mission pour transformer la vie des filles d&apos;Akum.
-            Votre soutien, quelle que soit sa forme, contribue directement à
-            leur offrir un avenir meilleur. Ensemble, nous pouvons créer un
-            impact durable et positif dans leur communauté.{" "}
+            Rejoignez notre mission pour transformer la vie des filles
+            d&apos;Akum. Votre soutien, quelle que soit sa forme, contribue
+            directement à leur offrir un avenir meilleur. Ensemble, nous pouvons
+            créer un impact durable et positif dans leur communauté.{" "}
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 items-center gap-12">
           <div className="grid grid-cols-2 gap-8">
             {services.map((service) => (
               <div key={service.title} className="text-center">
@@ -48,18 +53,17 @@ export function HelpSection() {
                   <service.icon className="h-8 w-8 text-primary" />
                 </div>
                 <h4 className="font-bold">{service.title}</h4>
-                <p className="text-black/80 text-sm">
-                  {service.description}
-                </p>
+                <p className="text-black/80 text-sm">{service.description}</p>
               </div>
             ))}
           </div>
           <div className="aspect-video relative bg-black/10 rounded-lg">
-            <Image
-              src="/images/photos/img_6.jpg"
-              alt="Help Section"
-              fill
-              className="object-cover"
+            <HeroVideoDialog
+              className="block"
+              animationStyle="from-center"
+              videoSrc={"/videos/video_4.mp4"}
+              thumbnailSrc="/images/community/img_6.jpeg"
+              thumbnailAlt="Video"
             />
           </div>
         </div>
