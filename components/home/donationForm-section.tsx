@@ -21,7 +21,7 @@ const cinetPayConfig = {
   apikey: "1844015494675035c99a8a15.16817687",
   site_id: "5883679",
   notify_url: "http://mondomaine.com/notify/",
-  mode: "PRODUCTION" as "PRODUCTION", // Pour corriger l'erreur de type
+  mode: "DEVELOPMENT" as "DEVELOPMENT", // Pour corriger l'erreur de type
 };
 const minAmount=5;
 // Liste des pays, voici quelques exemples, vous pouvez l'étendre ou la charger dynamiquement
