@@ -177,7 +177,7 @@ export function DonationForm() {
           <div className="mb-6">
             <input
               type="number"
-              placeholder="Montant personnalisé (FCFA)"
+              placeholder={`Montant personnalisé (${currency})`}
               value={customAmount}
               onChange={(e) => {
                 const value = e.target.value;
