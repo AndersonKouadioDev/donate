@@ -1,61 +1,105 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { motion } from "framer-motion";
-import { usePay } from "@/hooks/usePay";
+import { useCinetPay } from "@/hooks/useCinetPay";
 import { NotificationAction } from "@/src/actions/emails/notification.action";
 import { toast } from "sonner";
 
-const donationAmounts = [10, 20, 50, 100];
+const donationAmounts: number[] = [1000, 2000, 5000, 10000]; // en Francs CFA
+
+// Configuration de CinetPay pour le hook
+const cinetPayConfig = {
+  apikey: "1844015494675035c99a8a15.16817687",
+  site_id: "5883679",
+  notify_url: "http://mondomaine.com/notify/",
+  mode: "DEVELOPMENT" as "DEVELOPMENT", // Pour corriger l'erreur de type
+};
+
+// Liste des pays, voici quelques exemples, vous pouvez l'étendre ou la charger dynamiquement
+const countries = [
+  { code: "BJ", name: "Bénin", currency: "XOF" },
+  { code: "BF", name: "Burkina Faso", currency: "XOF" },
+  { code: "CI", name: "Côte d'Ivoire", currency: "XOF" },
+  { code: "GW", name: "Guinée-Bissau", currency: "XOF" },
+  { code: "ML", name: "Mali", currency: "XOF" },
+  { code: "NE", name: "Niger", currency: "XOF" },
+  { code: "SN", name: "Sénégal", currency: "XOF" },
+  { code: "TG", name: "Togo", currency: "XOF" },
+  { code: "CM", name: "Cameroun", currency: "XAF" },
+  { code: "CF", name: "République centrafricaine", currency: "XAF" },
+  { code: "TD", name: "Tchad", currency: "XAF" },
+  { code: "CG", name: "Congo", currency: "XAF" },
+  { code: "GQ", name: "Guinée équatoriale", currency: "XAF" },
+  { code: "GA", name: "Gabon", currency: "XAF" },
+];
 
 export function DonationForm() {
-  const [amount, setAmount] = useState(20);
-  const [customAmount, setCustomAmount] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [amount, setAmount] = useState<number>(2000);
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [country, setCountry] = useState<string>("CI"); // Default to Côte d'Ivoire
+  const [customAmount, setCustomAmount] = useState<string>(""); // Pour le montant personnalisé
 
-  const { open, paymentStatus } = usePay();
+  // Fonction pour obtenir la devise basée sur le code du pays
+  const getCurrency = (countryCode: string) => {
+    const countryObject = countries.find(
+      (country) => country.code === countryCode,
+    );
+    return countryObject ? countryObject.currency : "XOF"; // Retourne la devise ou XOF par défaut
+  };
+
+  // Utilisation de getCurrency pour obtenir la devise du pays sélectionné
+  const currency = getCurrency(country);
+
+  const { initializePayment, loading, error, sdkReady } =
+    useCinetPay(cinetPayConfig);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    if(amount<5) return;
+    if (amount < 500) return; // Minimum de 500 FCFA
     e.preventDefault();
     try {
-      open({
-        amount,
-        name,
-        email,
+      initializePayment({
+        amount: amount,
+        currency: currency,
+        channels: "ALL",
+        description: "Donation",
+        customer_name: name,
+        customer_surname: "", // Si non utilisé, vide
+        customer_email: email,
+        customer_phone_number: "", // Si non utilisé, vide
+        customer_address: "",
+        customer_city: "",
+        customer_country: country, // Utilisation du pays sélectionné
+        customer_state: "",
+        customer_zip_code: "",
       });
 
-      console.log(`Don de ${amount}€ soumis avec succès !`);
-    } catch (error) {
-      console.error("Erreur lors de la soumission du don :", error);
+      console.log(`Don de ${amount} ${currency} soumis avec succès !`);
+    } catch (err) {
+      console.error("Erreur lors de la soumission du don :", err);
     }
   };
 
   useEffect(() => {
-    if (paymentStatus === "success") {
-      NotificationAction({ amount, name, email })
-        .then((response) => {
-          if (!response.success) {
-            throw new Error("Failed to send email");
-          }
-          toast("Don effectué avec succès", {
-            description: "Merci pour votre don !",
-          });
-        })
-        .catch((error) => {
-          toast("Erreur", {
-            description:
-              "Une erreur est survenue lors de l'envoi de la facture",
-          });
-        });
-    } else if (paymentStatus === "error") {
-      toast("Paiement échoué", {
-        description: "Une erreur est survenue lors du paiement",
+    if (!loading && !error) {
+      if (sdkReady) {
+        console.log("CinetPay SDK prêt");
+      }
+    } else if (error) {
+      toast("Erreur", {
+        description: error,
       });
     }
-  }, [amount, email, name, paymentStatus]);
+  }, [loading, error, sdkReady]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -97,37 +141,61 @@ export function DonationForm() {
               required
             />
           </div>
+          <div className="mb-6">
+            <Select
+              onValueChange={(value: string) => setCountry(value)}
+              value={country}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Sélectionner un pays" />
+              </SelectTrigger>
+              <SelectContent>
+                {countries.map((country) => (
+                  <SelectItem key={country.code} value={country.code}>
+                    {country.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
           <div className="grid grid-cols-2 gap-4 mb-6">
             {donationAmounts.map((amt) => (
               <Button
                 key={amt}
                 variant={amount === amt ? "default" : "outline"}
-                onClick={() => setAmount(amt)}
+                onClick={() => {
+                  setAmount(amt);
+                  setCustomAmount(""); // Réinitialiser le montant personnalisé
+                }}
                 className="w-full"
                 type="button"
               >
-                {amt}€
+                {amt} FCFA
               </Button>
             ))}
           </div>
           <div className="mb-6">
             <input
               type="number"
-              placeholder="Autre montant"
+              placeholder="Montant personnalisé (FCFA)"
               value={customAmount}
               onChange={(e) => {
-                setCustomAmount(e.target.value);
-                setAmount(parseInt(e.target.value) || 0);
+                const value = e.target.value;
+                setCustomAmount(value);
+                setAmount(Number(value)); // Mettre à jour amount avec le montant personnalisé
               }}
-              min={5}
-              className="w-full p-2 bg-transparent border border-secondary rounded placeholder-gray-400"
+              min={500}
+              className="w-full p-2 bg-transparent border border-secondary rounded placeholder-gray-200"
             />
           </div>
           <Button
             type="submit"
             className="w-full bg-yellow-400 text-gray-900 hover:bg-yellow-500"
+            disabled={loading}
           >
-            Faire un don de {amount}€
+            {loading
+              ? "Traitement..."
+              : `Faire un don de ${amount} ${currency}`}
           </Button>
           <p className="mt-4 text-sm text-center text-white font-bold">
             100% de votre don va directement au projet
