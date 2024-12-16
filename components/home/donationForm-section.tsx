@@ -23,7 +23,7 @@ const cinetPayConfig = {
   notify_url: "http://mondomaine.com/notify/",
   mode: "DEVELOPMENT" as "DEVELOPMENT", // Pour corriger l'erreur de type
 };
-
+const minAmount=5;
 // Liste des pays, voici quelques exemples, vous pouvez l'étendre ou la charger dynamiquement
 const countries = [
   { code: "BJ", name: "Bénin", currency: "XOF" },
@@ -64,7 +64,7 @@ export function DonationForm() {
     useCinetPay(cinetPayConfig);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    if (amount < 500) return; // Minimum de 500 FCFA
+    if (amount < minAmount) return; // Minimum de 500 FCFA
     e.preventDefault();
     try {
       initializePayment({
@@ -184,7 +184,7 @@ export function DonationForm() {
                 setCustomAmount(value);
                 setAmount(Number(value)); // Mettre à jour amount avec le montant personnalisé
               }}
-              min={500}
+              min={minAmount}
               className="w-full p-2 bg-transparent border border-secondary rounded placeholder-gray-200"
             />
           </div>
