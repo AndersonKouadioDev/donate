@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/select";
 import { motion } from "framer-motion";
 import { useCinetPay } from "@/hooks/useCinetPay";
-import { NotificationAction } from "@/src/actions/emails/notification.action";
 import { toast } from "sonner";
 
 const donationAmounts: number[] = [1000, 2000, 5000, 10000]; // en Francs CFA
@@ -44,8 +43,6 @@ const countries = [
 
 export function DonationForm() {
   const [amount, setAmount] = useState<number>(2000);
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
   const [country, setCountry] = useState<string>("CI"); // Default to Côte d'Ivoire
   const [customAmount, setCustomAmount] = useState<string>(""); // Pour le montant personnalisé
 
@@ -72,9 +69,9 @@ export function DonationForm() {
         currency: currency,
         channels: "ALL",
         description: "Donation",
-        customer_name: name,
+        customer_name: "",
         customer_surname: "", // Si non utilisé, vide
-        customer_email: email,
+        customer_email: "",
         customer_phone_number: "", // Si non utilisé, vide
         customer_address: "",
         customer_city: "",
@@ -121,26 +118,6 @@ export function DonationForm() {
           <h2 className="text-6xl font-edu font-bold text-center mb-12">
             FAIRE UN DON
           </h2>
-          <div className="mb-6">
-            <input
-              type="text"
-              placeholder="Nom"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full p-2 bg-transparent border border-secondary rounded placeholder-gray-400"
-              required
-            />
-          </div>
-          <div className="mb-6">
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 bg-transparent border border-secondary rounded placeholder-gray-400"
-              required
-            />
-          </div>
           <div className="mb-6">
             <Select
               onValueChange={(value: string) => setCountry(value)}
